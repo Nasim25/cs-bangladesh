@@ -4,236 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Organization Portal</title>
+    <title>CS Bangladesh</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --light-color: #ecf0f1;
-            --dark-color: #2c3e50;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #333;
-            background-color: #f8f9fa;
-        }
-
-        .navbar {
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .navbar-brand {
-            font-weight: 700;
-            font-size: 1.5rem;
-        }
-
-        .nav-link {
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-
-        .nav-link:hover {
-            color: var(--accent-color) !important;
-        }
-
-        .hero-section {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 5rem 0;
-            margin-bottom: 3rem;
-        }
-
-        .hero-title {
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .section-title {
-            position: relative;
-            padding-bottom: 15px;
-            margin-bottom: 30px;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background-color: var(--accent-color);
-        }
-
-        .card {
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            margin-bottom: 25px;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .card-img-top {
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-        }
-
-        .btn-primary {
-            background-color: var(--secondary-color);
-            border-color: var(--secondary-color);
-        }
-
-        .btn-primary:hover {
-            background-color: #2980b9;
-            border-color: #2980b9;
-        }
-
-        .btn-accent {
-            background-color: var(--accent-color);
-            border-color: var(--accent-color);
-            color: white;
-        }
-
-        .btn-accent:hover {
-            background-color: #c0392b;
-            border-color: #c0392b;
-            color: white;
-        }
-
-        .feature-box {
-            padding: 30px;
-            border-radius: 10px;
-            background-color: white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-            transition: transform 0.3s;
-        }
-
-        .feature-box:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--secondary-color);
-            margin-bottom: 20px;
-        }
-
-        .event-date {
-            background-color: var(--accent-color);
-            color: white;
-            text-align: center;
-            padding: 10px;
-            border-radius: 5px;
-            font-weight: 600;
-        }
-
-        .event-month {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-        }
-
-        .event-day {
-            font-size: 1.5rem;
-        }
-
-        .sidebar-widget {
-            background-color: white;
-            border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .sidebar-widget h4 {
-            margin-bottom: 20px;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        .sidebar-widget ul {
-            padding-left: 0;
-            list-style: none;
-        }
-
-        .sidebar-widget ul li {
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .sidebar-widget ul li:last-child {
-            border-bottom: none;
-        }
-
-        .sidebar-widget ul li a {
-            color: #333;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .sidebar-widget ul li a:hover {
-            color: var(--secondary-color);
-        }
-
-        footer {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 4rem 0 2rem;
-        }
-
-        footer h5 {
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-        }
-
-        footer ul li {
-            margin-bottom: 0.5rem;
-        }
-
-        footer a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        footer a:hover {
-            color: white;
-        }
-
-        .social-icons a {
-            display: inline-block;
-            width: 36px;
-            height: 36px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            text-align: center;
-            line-height: 36px;
-            margin-right: 10px;
-            transition: background-color 0.3s;
-        }
-
-        .social-icons a:hover {
-            background-color: var(--secondary-color);
-        }
-
-        .copyright {
-            background-color: rgba(0, 0, 0, 0.2);
-            padding: 1.5rem 0;
-            margin-top: 3rem;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -242,7 +18,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 small">
-                    <span class="me-3"><i class="fas fa-envelope me-2"></i>info@organization.com</span>
+                    <span class="me-3"><i class="fas fa-envelope me-2"></i>info@csbanglades.com</span>
                     <span><i class="fas fa-phone me-2"></i>+1 (123) 456-7890</span>
                 </div>
                 <div class="col-md-6 text-md-end small">
@@ -258,7 +34,7 @@
         <div class="container">
             <a class="navbar-brand" href="#">
                 <i class="fas fa-building text-primary me-2"></i>
-                Organization
+                CS Bangladesh
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -288,6 +64,8 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Upcoming Sessions</a></li>
                             <li><a class="dropdown-item" href="#">Past Sessions</a></li>
+                            <li><a class="dropdown-item" href="#">Resource</a></li>
+                            <li><a class="dropdown-item" href="#">Link</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -295,16 +73,6 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Upcoming Events</a></li>
                             <li><a class="dropdown-item" href="#">Past Events</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Resources</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Rules/Acts/Laws</a></li>
-                            <li><a class="dropdown-item" href="#">Journal/Write-up/Blog</a></li>
-                            <li><a class="dropdown-item" href="#">News/Updates</a></li>
-                            <li><a class="dropdown-item" href="#">FAQ</a></li>
-                            <li><a class="dropdown-item" href="#">Links</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -320,7 +88,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <h1 class="hero-title">Empowering Professionals Since 2005</h1>
+                    <h1 class="hero-title">CA Bangladesh Since 2005</h1>
                     <p class="lead mb-4">We provide resources, training, and networking opportunities to help
                         professionals excel in their careers and contribute to society.</p>
                     <div class="d-flex flex-wrap">
@@ -342,8 +110,44 @@
             <div class="row">
                 <!-- Main Content Area -->
                 <div class="col-lg-8">
+
+                    <!-- About Section -->
+                    <div>
+                        <h2 class="section-title">About US</h2>
+                        <p>Founded in 2005, our organization has been at the forefront of professional development and
+                            community building. What started as a small group of like-minded professionals has grown
+                            into a
+                            nationwide network with international connections.</p>
+                        <p>Our mission is to foster professional growth, facilitate knowledge exchange, and build a
+                            supportive community for all members. We strive to become the leading organization that
+                            empowers
+                            professionals through education, networking, and resources.</p>
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Our Vision</h5>
+                                        <p class="card-text">To become the leading organization that empowers
+                                            professionals
+                                            through education, networking, and resources.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Our Mission</h5>
+                                        <p class="card-text">To foster professional growth, facilitate knowledge
+                                            exchange,
+                                            and build a supportive community for all members.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Features Section -->
-                    <h2 class="section-title">What We Offer</h2>
+                    <h2 class="section-title">Training/Workshop</h2>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="feature-box">
@@ -413,37 +217,33 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <img src="https://via.placeholder.com/600x400" class="card-img-top"
+                                    alt="Activity Image">
+                                <div class="card-body">
+                                    <h5 class="card-title">Leadership Workshop Series</h5>
+                                    <p class="card-text">A three-day workshop focusing on leadership skills development,
+                                        strategic thinking, and effective communication.</p>
+                                    <a href="#" class="btn btn-primary">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <img src="https://via.placeholder.com/600x400" class="card-img-top"
+                                    alt="Activity Image">
+                                <div class="card-body">
+                                    <h5 class="card-title">Leadership Workshop Series</h5>
+                                    <p class="card-text">A three-day workshop focusing on leadership skills development,
+                                        strategic thinking, and effective communication.</p>
+                                    <a href="#" class="btn btn-primary">Read More</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- About Section -->
-                    <h2 class="section-title mt-5">About Our Organization</h2>
-                    <p>Founded in 2005, our organization has been at the forefront of professional development and
-                        community building. What started as a small group of like-minded professionals has grown into a
-                        nationwide network with international connections.</p>
-                    <p>Our mission is to foster professional growth, facilitate knowledge exchange, and build a
-                        supportive community for all members. We strive to become the leading organization that empowers
-                        professionals through education, networking, and resources.</p>
-                    <div class="row mt-4">
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Our Vision</h5>
-                                    <p class="card-text">To become the leading organization that empowers professionals
-                                        through education, networking, and resources.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Our Mission</h5>
-                                    <p class="card-text">To foster professional growth, facilitate knowledge exchange,
-                                        and build a supportive community for all members.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#" class="btn btn-primary mt-4">Learn More About Us</a>
+
                 </div>
 
                 <!-- Sidebar -->
@@ -606,15 +406,15 @@
                     <ul class="list-unstyled">
                         <li><i class="fas fa-map-marker-alt me-2"></i> 123 Organization Street, City, Country</li>
                         <li><i class="fas fa-phone me-2"></i> +1 (123) 456-7890</li>
-                        <li><i class="fas fa-envelope me-2"></i> info@organization.com</li>
-                        <li><i class="fas fa-globe me-2"></i> www.organization.com</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@csbangldesh.com</li>
+                        <li><i class="fas fa-globe me-2"></i> www.csbangldesh.com</li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="copyright text-center">
             <div class="container">
-                <p class="mb-0">&copy; 2023 Organization Name. All Rights Reserved.</p>
+                <p class="mb-0">&copy; 2023 CS Bangldesh. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
