@@ -6,421 +6,662 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CS Bangladesh</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <style>
+        /* Custom colors and styles */
+        :root {
+            --primary-color: #d14836;
+            --secondary-color: #343a40;
+            --light-color: #f8f9fa;
+        }
+
+        /* Color Palette Options */
+        /* 
+        /* Palette 1: Professional Blue */
+        :root {
+            --primary-color: #1a73e8;
+            --secondary-color: #34495e;
+            --accent-color: #e67e22;
+            --light-color: #f8f9fa;
+            --dark-color: #2c3e50;
+        }
+
+        /* Palette 2: Tech Green (Uncomment to use) */
+        /*
+        :root {
+            --primary-color: #27ae60;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #1a252f;
+        }
+        */
+
+        /* Palette 3: Modern Purple (Uncomment to use) */
+        /*
+        :root {
+            --primary-color: #8e44ad;
+            --secondary-color: #34495e;
+            --accent-color: #f39c12;
+            --light-color: #f5f5f5;
+            --dark-color: #2c3e50;
+        }
+        */
+
+        /* Palette 4: Vibrant Red (Uncomment to use) */
+        /*
+        :root {
+            --primary-color: #e74c3c;
+            --secondary-color: #2c3e50;
+            --accent-color: #3498db;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
+        }
+        */
+
+        /* Palette 5: Classic Teal (Uncomment to use) */
+        /*
+        :root {
+            --primary-color: #16a085;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #f5f5f5;
+            --dark-color: #34495e;
+        }
+        */
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Logo styling */
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        /* Multi-level dropdown menu */
+        .dropdown-menu {
+            margin: 0;
+            padding: 0;
+            border-radius: 0;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .dropdown-menu li {
+            position: relative;
+        }
+
+        .dropdown-menu .dropdown-submenu {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            min-width: 200px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .dropdown-menu .dropdown-submenu-left {
+            right: 100%;
+            left: auto;
+        }
+
+        .dropdown-menu>li:hover>.dropdown-submenu {
+            display: block;
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--light-color);
+            color: var(--primary-color);
+        }
+
+        .dropdown-toggle::after {
+            vertical-align: middle;
+        }
+
+        /* Mobile menu fixes */
+        @media (max-width: 992px) {
+            .dropdown-menu .dropdown-submenu {
+                position: static;
+                display: none;
+                margin-left: 1rem;
+                box-shadow: none;
+                width: auto;
+                min-width: auto;
+            }
+
+            .dropdown-menu .dropdown-submenu.show {
+                display: block;
+            }
+
+            .dropdown-item {
+                padding: 0.5rem 1rem;
+            }
+
+            .dropdown-menu>li:hover>.dropdown-submenu {
+                display: none;
+                /* Prevent auto-display on hover for mobile */
+            }
+
+            .dropdown-menu .dropdown-submenu-left {
+                right: auto;
+                left: auto;
+            }
+
+            /* Add arrow icon for items with submenus */
+            .dropdown-item.d-flex {
+                justify-content: space-between;
+            }
+
+            /* Indent third-level items */
+            .dropdown-submenu .dropdown-item {
+                padding-left: 2rem;
+            }
+        }
+
+        /* Main navigation */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-link {
+            color: var(--secondary-color);
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus {
+            color: var(--primary-color);
+        }
+
+        .navbar-toggler {
+            border: none;
+        }
+
+        /* Hero section */
+        .hero {
+            background-color: var(--light-color);
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Section styling */
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 50px;
+            background-color: var(--primary-color);
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            margin-bottom: 1.5rem;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-title {
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Top Bar -->
-    <div class="bg-dark text-white py-2">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 small">
-                    <span class="me-3"><i class="fas fa-envelope me-2"></i>info@csbanglades.com</span>
-                    <span><i class="fas fa-phone me-2"></i>+1 (123) 456-7890</span>
-                </div>
-                <div class="col-md-6 text-md-end small">
-                    <a href="#" class="text-white me-3"><i class="fas fa-user me-1"></i>Member Login</a>
-                    <a href="#" class="text-white"><i class="fas fa-search me-1"></i>Search</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Header with Navigation -->
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <!-- Logo -->
+                <a class="navbar-brand logo" href="index.html">
+                    <span class="logo-text">CS Bangladesh</span>
+                </a>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <i class="fas fa-building text-primary me-2"></i>
-                CS Bangladesh
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Home</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Short History</a></li>
-                            <li><a class="dropdown-item" href="#">Aim & Objective</a></li>
-                            <li><a class="dropdown-item" href="#">Recent Activities</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">About Us</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Detailed History</a></li>
-                            <li><a class="dropdown-item" href="#">Vision and Mission</a></li>
-                            <li><a class="dropdown-item" href="#">Advisory Board</a></li>
-                            <li><a class="dropdown-item" href="#">Executive Committee</a></li>
-                            <li><a class="dropdown-item" href="#">Members</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Training/Workshop</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Upcoming Sessions</a></li>
-                            <li><a class="dropdown-item" href="#">Past Sessions</a></li>
-                            <li><a class="dropdown-item" href="#">Resource</a></li>
-                            <li><a class="dropdown-item" href="#">Link</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Events</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Upcoming Events</a></li>
-                            <li><a class="dropdown-item" href="#">Past Events</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact Us</a>
-                    </li>
-                </ul>
+                <!-- Mobile Toggle Button -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Navigation Menu -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <!-- Home -->
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Home</a>
+                        </li>
+
+                        <!-- About Us Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                About Us
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+                                <li><a class="dropdown-item" href="#">History</a></li>
+                                <li><a class="dropdown-item" href="#">Objective</a></li>
+                                <li><a class="dropdown-item" href="#">Advisors</a></li>
+                                <li>
+                                    <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">
+                                        Executive Committee
+                                        <i class="fas fa-chevron-right ms-2 small"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-submenu">
+                                        <li><a class="dropdown-item" href="#">President</a></li>
+                                        <li><a class="dropdown-item" href="#">Secretary General</a></li>
+                                        <li><a class="dropdown-item" href="#">Treasurer</a></li>
+                                        <li><a class="dropdown-item" href="#">Members</a></li>
+                                    </ul>
+                                </li>
+                                <li><a class="dropdown-item" href="#">Contact Us</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Training/Workshop Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="trainingDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Training/Workshop
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="trainingDropdown">
+                                <li>
+                                    <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">
+                                        Past Events
+                                        <i class="fas fa-chevron-right ms-2 small"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-submenu">
+                                        <li><a class="dropdown-item" href="#">Name, Date, Place</a></li>
+                                        <li><a class="dropdown-item" href="#">Photo Gallery</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">
+                                        Upcoming Events
+                                        <i class="fas fa-chevron-right ms-2 small"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-submenu">
+                                        <li><a class="dropdown-item" href="#">Name, Date, Place</a></li>
+                                        <li><a class="dropdown-item" href="#">Registration</a></li>
+                                    </ul>
+                                </li>
+                                <li><a class="dropdown-item" href="#">Photo Gallery</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Members Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="membersDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Members
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="membersDropdown">
+                                <li><a class="dropdown-item" href="#">List of Members</a></li>
+                                <li><a class="dropdown-item" href="#">Procedure for Membership</a></li>
+                                <li><a class="dropdown-item" href="#">Membership Form</a></li>
+                                <li><a class="dropdown-item" href="#">Fees</a></li>
+                                <li><a class="dropdown-item" href="#">Benefits of Members</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Resources Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Resources
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="resourcesDropdown">
+                                <li><a class="dropdown-item" href="#">Rules/Acts/Laws</a></li>
+                                <li><a class="dropdown-item" href="#">Journal/Write up/Blog</a></li>
+                                <li><a class="dropdown-item" href="#">News/Updates</a></li>
+                                <li><a class="dropdown-item" href="#">FAQ</a></li>
+                                <li>
+                                    <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">
+                                        Links
+                                        <i class="fas fa-chevron-right ms-2 small"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-submenu">
+                                        <li><a class="dropdown-item" href="#">Govt. Websites</a></li>
+                                        <li><a class="dropdown-item" href="#">Educational Institutes</a></li>
+                                        <li><a class="dropdown-item" href="#">Foreign Bodies</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- Events Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="eventsDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Events
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="eventsDropdown">
+                                <li>
+                                    <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">
+                                        Upcoming Events
+                                        <i class="fas fa-chevron-right ms-2 small"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-submenu">
+                                        <li><a class="dropdown-item" href="#">Title</a></li>
+                                        <li><a class="dropdown-item" href="#">Place</a></li>
+                                        <li><a class="dropdown-item" href="#">Date</a></li>
+                                        <li><a class="dropdown-item" href="#">Procedure to Join</a></li>
+                                        <li><a class="dropdown-item" href="#">Photo & Video</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">
+                                        Past Events
+                                        <i class="fas fa-chevron-right ms-2 small"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-submenu">
+                                        <li><a class="dropdown-item" href="#">Title</a></li>
+                                        <li><a class="dropdown-item" href="#">Place</a></li>
+                                        <li><a class="dropdown-item" href="#">Date</a></li>
+                                        <li><a class="dropdown-item" href="#">Photo & Video</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- Contact Us -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="contactDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Contact Us
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="contactDropdown">
+                                <li><a class="dropdown-item" href="#">Address</a></li>
+                                <li><a class="dropdown-item" href="#">Email</a></li>
+                                <li><a class="dropdown-item" href="#">Web</a></li>
+                                <li><a class="dropdown-item" href="#">Phone No.</a></li>
+                                <li><a class="dropdown-item" href="#">Online Contact Form</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section class="hero-section">
+    <section class="hero">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <h1 class="hero-title">CA Bangladesh Since 2005</h1>
-                    <p class="lead mb-4">We provide resources, training, and networking opportunities to help
-                        professionals excel in their careers and contribute to society.</p>
-                    <div class="d-flex flex-wrap">
-                        <a href="#" class="btn btn-light btn-lg me-2 mb-2">Learn More</a>
-                        <a href="#" class="btn btn-accent btn-lg mb-2">Become a Member</a>
-                    </div>
+                    <h1>Welcome to CS Bangladesh</h1>
+                    <p class="lead">Promoting computer science education and research in Bangladesh</p>
+                    <a href="#" class="btn btn-primary mt-3">Learn More</a>
                 </div>
-                <div class="col-lg-6 d-none d-lg-block">
-                    <img src="https://via.placeholder.com/600x400" alt="Organization Image"
-                        class="img-fluid rounded shadow">
+                <div class="col-lg-6">
+                    <img src="/placeholder.svg?height=300&width=500" alt="CS Bangladesh" class="img-fluid">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Main Content -->
-    <section class="py-5">
-        <div class="container">
+    <main class="container">
+        <!-- Short History Section -->
+        <section class="mb-5">
+            <h2 class="section-title">Short History</h2>
             <div class="row">
-                <!-- Main Content Area -->
                 <div class="col-lg-8">
-
-                    <!-- About Section -->
-                    <div>
-                        <h2 class="section-title">About US</h2>
-                        <p>Founded in 2005, our organization has been at the forefront of professional development and
-                            community building. What started as a small group of like-minded professionals has grown
-                            into a
-                            nationwide network with international connections.</p>
-                        <p>Our mission is to foster professional growth, facilitate knowledge exchange, and build a
-                            supportive community for all members. We strive to become the leading organization that
-                            empowers
-                            professionals through education, networking, and resources.</p>
-                        <div class="row mt-4">
-                            <div class="col-md-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Our Vision</h5>
-                                        <p class="card-text">To become the leading organization that empowers
-                                            professionals
-                                            through education, networking, and resources.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Our Mission</h5>
-                                        <p class="card-text">To foster professional growth, facilitate knowledge
-                                            exchange,
-                                            and build a supportive community for all members.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Features Section -->
-                    <h2 class="section-title">Training/Workshop</h2>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="feature-box">
-                                <div class="feature-icon">
-                                    <i class="fas fa-graduation-cap"></i>
-                                </div>
-                                <h4>Professional Development</h4>
-                                <p>Access to workshops, training sessions, and resources to enhance your professional
-                                    skills.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="feature-box">
-                                <div class="feature-icon">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                                <h4>Networking Opportunities</h4>
-                                <p>Connect with like-minded professionals and industry leaders through our events and
-                                    platforms.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="feature-box">
-                                <div class="feature-icon">
-                                    <i class="fas fa-book"></i>
-                                </div>
-                                <h4>Resource Library</h4>
-                                <p>Access to journals, publications, and research papers relevant to your professional
-                                    growth.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="feature-box">
-                                <div class="feature-icon">
-                                    <i class="fas fa-certificate"></i>
-                                </div>
-                                <h4>Certification Programs</h4>
-                                <p>Enhance your credentials through our certified professional development programs.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Recent Activities -->
-                    <h2 class="section-title mt-5">Recent Activities</h2>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card">
-                                <img src="https://via.placeholder.com/600x400" class="card-img-top"
-                                    alt="Activity Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Annual Conference 2023</h5>
-                                    <p class="card-text">Our annual conference brought together over 200 professionals
-                                        from across the country to discuss industry trends and innovations.</p>
-                                    <a href="#" class="btn btn-primary">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card">
-                                <img src="https://via.placeholder.com/600x400" class="card-img-top"
-                                    alt="Activity Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Leadership Workshop Series</h5>
-                                    <p class="card-text">A three-day workshop focusing on leadership skills development,
-                                        strategic thinking, and effective communication.</p>
-                                    <a href="#" class="btn btn-primary">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card">
-                                <img src="https://via.placeholder.com/600x400" class="card-img-top"
-                                    alt="Activity Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Leadership Workshop Series</h5>
-                                    <p class="card-text">A three-day workshop focusing on leadership skills development,
-                                        strategic thinking, and effective communication.</p>
-                                    <a href="#" class="btn btn-primary">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card">
-                                <img src="https://via.placeholder.com/600x400" class="card-img-top"
-                                    alt="Activity Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Leadership Workshop Series</h5>
-                                    <p class="card-text">A three-day workshop focusing on leadership skills development,
-                                        strategic thinking, and effective communication.</p>
-                                    <a href="#" class="btn btn-primary">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
+                    <p>CS Bangladesh was established in 2010 with the vision of advancing computer science education and
+                        research in Bangladesh. Founded by a group of passionate computer scientists and educators, the
+                        organization has grown to become a leading voice in the technology sector of the country.</p>
+                    <p>Over the years, we have organized numerous workshops, seminars, and training programs to promote
+                        computer science education and research. Our members include academics, industry professionals,
+                        and students who are committed to the advancement of computer science in Bangladesh.</p>
                 </div>
-
-                <!-- Sidebar -->
                 <div class="col-lg-4">
-                    <!-- Upcoming Events Widget -->
-                    <div class="sidebar-widget">
-                        <h4>Upcoming Events</h4>
-                        <div class="d-flex mb-3">
-                            <div class="event-date me-3">
-                                <div class="event-month">Jun</div>
-                                <div class="event-day">15</div>
-                            </div>
-                            <div>
-                                <h6 class="mb-1">Annual General Meeting</h6>
-                                <p class="small text-muted mb-0"><i class="fas fa-map-marker-alt me-1"></i> Grand
-                                    Convention Center</p>
-                                <a href="#" class="btn btn-sm btn-outline-primary mt-2">Details</a>
-                            </div>
-                        </div>
-                        <div class="d-flex mb-3">
-                            <div class="event-date me-3">
-                                <div class="event-month">Jul</div>
-                                <div class="event-day">08</div>
-                            </div>
-                            <div>
-                                <h6 class="mb-1">Professional Development Workshop</h6>
-                                <p class="small text-muted mb-0"><i class="fas fa-map-marker-alt me-1"></i> City
-                                    Business Center</p>
-                                <a href="#" class="btn btn-sm btn-outline-primary mt-2">Details</a>
-                            </div>
-                        </div>
-                        <div class="d-flex">
-                            <div class="event-date me-3">
-                                <div class="event-month">Sep</div>
-                                <div class="event-day">22</div>
-                            </div>
-                            <div>
-                                <h6 class="mb-1">International Conference</h6>
-                                <p class="small text-muted mb-0"><i class="fas fa-map-marker-alt me-1"></i>
-                                    International Convention Hall</p>
-                                <a href="#" class="btn btn-sm btn-outline-primary mt-2">Details</a>
-                            </div>
-                        </div>
-                        <div class="text-center mt-4">
-                            <a href="#" class="btn btn-primary">View All Events</a>
-                        </div>
-                    </div>
-
-                    <!-- News & Updates Widget -->
-                    <div class="sidebar-widget">
-                        <h4>News & Updates</h4>
-                        <div class="mb-3 pb-3 border-bottom">
-                            <h6>New Partnership Announcement</h6>
-                            <p class="small text-muted mb-1"><i class="far fa-clock me-1"></i> May 28, 2023</p>
-                            <p class="small">We are excited to announce our new partnership with International
-                                Professional Association.</p>
-                            <a href="#" class="btn btn-sm btn-outline-primary">Read More</a>
-                        </div>
-                        <div class="mb-3 pb-3 border-bottom">
-                            <h6>Membership Benefits Update</h6>
-                            <p class="small text-muted mb-1"><i class="far fa-clock me-1"></i> May 15, 2023</p>
-                            <p class="small">We've added new benefits to our membership package including access to
-                                exclusive resources.</p>
-                            <a href="#" class="btn btn-sm btn-outline-primary">Read More</a>
-                        </div>
-                        <div>
-                            <h6>Annual Report Released</h6>
-                            <p class="small text-muted mb-1"><i class="far fa-clock me-1"></i> April 30, 2023</p>
-                            <p class="small">Our annual report for 2022-2023 is now available for download from the
-                                resources section.</p>
-                            <a href="#" class="btn btn-sm btn-outline-primary">Read More</a>
-                        </div>
-                        <div class="text-center mt-4">
-                            <a href="#" class="btn btn-primary">View All News</a>
-                        </div>
-                    </div>
-
-                    <!-- Quick Links Widget -->
-                    <div class="sidebar-widget">
-                        <h4>Quick Links</h4>
-                        <ul>
-                            <li><a href="#"><i class="fas fa-file-alt me-2"></i> Membership Form</a></li>
-                            <li><a href="#"><i class="fas fa-book me-2"></i> Resources Library</a></li>
-                            <li><a href="#"><i class="fas fa-calendar-alt me-2"></i> Event Calendar</a></li>
-                            <li><a href="#"><i class="fas fa-question-circle me-2"></i> FAQ</a></li>
-                            <li><a href="#"><i class="fas fa-envelope me-2"></i> Contact Us</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Newsletter Widget -->
-                    <div class="sidebar-widget">
-                        <h4>Subscribe to Newsletter</h4>
-                        <p class="small">Stay updated with our latest news, events, and resources.</p>
-                        <form>
-                            <div class="mb-3">
-                                <input type="email" class="form-control" placeholder="Your Email Address">
-                            </div>
-                            <button type="submit" class="btn btn-primary w-100">Subscribe</button>
-                        </form>
-                    </div>
+                    <img src="/placeholder.svg?height=200&width=300" alt="CS Bangladesh History"
+                        class="img-fluid rounded">
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Call to Action Section -->
-    <section class="py-5 bg-primary text-white">
-        <div class="container">
-            <div class="row align-items-center">
+        <!-- Aims and Objectives Section -->
+        <section class="mb-5">
+            <h2 class="section-title">Aims & Objectives</h2>
+            <div class="row">
+                <div class="col-lg-4">
+                    <img src="/placeholder.svg?height=200&width=300" alt="CS Bangladesh Objectives"
+                        class="img-fluid rounded">
+                </div>
                 <div class="col-lg-8">
-                    <h2 class="mb-3">Ready to Join Our Community?</h2>
-                    <p class="lead mb-0">Become a member today and access exclusive resources, events, and networking
-                        opportunities.</p>
-                </div>
-                <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
-                    <a href="#" class="btn btn-light btn-lg">Join Now</a>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">To promote computer science education and research in Bangladesh
+                        </li>
+                        <li class="list-group-item">To organize workshops, seminars, and training programs for students
+                            and professionals</li>
+                        <li class="list-group-item">To establish collaboration between academia and industry</li>
+                        <li class="list-group-item">To provide a platform for networking and knowledge sharing among
+                            computer science professionals</li>
+                        <li class="list-group-item">To advocate for policies that promote technology education and
+                            innovation</li>
+                        <li class="list-group-item">To support students and young professionals in their career
+                            development</li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Recent Activities Section -->
+        <section class="mb-5">
+            <h2 class="section-title">Recent Activities Summary</h2>
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <img src="/placeholder.svg?height=200&width=300" class="card-img-top" alt="Workshop">
+                        <div class="card-body">
+                            <h5 class="card-title">AI Workshop</h5>
+                            <p class="card-text">A three-day workshop on Artificial Intelligence and Machine Learning
+                                was organized at Dhaka University.</p>
+                            <p class="text-muted small">May 15, 2023</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <img src="/placeholder.svg?height=200&width=300" class="card-img-top" alt="Conference">
+                        <div class="card-body">
+                            <h5 class="card-title">Annual Conference</h5>
+                            <p class="card-text">The annual conference on Computer Science and Engineering was held with
+                                participants from all over the country.</p>
+                            <p class="text-muted small">April 10, 2023</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <img src="/placeholder.svg?height=200&width=300" class="card-img-top" alt="Seminar">
+                        <div class="card-body">
+                            <h5 class="card-title">Industry Seminar</h5>
+                            <p class="card-text">A seminar on "Career Opportunities in IT Industry" was organized for
+                                university students.</p>
+                            <p class="text-muted small">March 5, 2023</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <a href="#" class="btn btn-outline-primary">View All Activities</a>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                    <h5>About Us</h5>
-                    <p class="small">We are a professional organization dedicated to the advancement and development of
-                        our members through education, networking, and resources.</p>
-                    <div class="social-icons mt-3">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="footer-title">CS Bangladesh</h5>
+                    <p>Promoting computer science education and research in Bangladesh since 2010.</p>
+                    <div class="social-icons">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                    <h5>Quick Links</h5>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="footer-title">Quick Links</h5>
                     <ul class="list-unstyled">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">About Us</a></li>
-                        <li><a href="#">Training/Workshop</a></li>
                         <li><a href="#">Events</a></li>
                         <li><a href="#">Resources</a></li>
                         <li><a href="#">Contact Us</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                    <h5>Resources</h5>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="footer-title">Contact Information</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#">Rules/Acts/Laws</a></li>
-                        <li><a href="#">Journal/Write-up/Blog</a></li>
-                        <li><a href="#">News/Updates</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Links</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5>Contact Us</h5>
-                    <ul class="list-unstyled">
-                        <li><i class="fas fa-map-marker-alt me-2"></i> 123 Organization Street, City, Country</li>
-                        <li><i class="fas fa-phone me-2"></i> +1 (123) 456-7890</li>
-                        <li><i class="fas fa-envelope me-2"></i> info@csbangldesh.com</li>
-                        <li><i class="fas fa-globe me-2"></i> www.csbangldesh.com</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i> 123 University Road, Dhaka, Bangladesh</li>
+                        <li><i class="fas fa-phone me-2"></i> +880 1234 567890</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@csbangladesh.org</li>
+                        <li><i class="fas fa-globe me-2"></i> www.csbangladesh.org</li>
                     </ul>
                 </div>
             </div>
-        </div>
-        <div class="copyright text-center">
-            <div class="container">
-                <p class="mb-0">&copy; 2023 CS Bangldesh. All Rights Reserved.</p>
+            <div class="row mt-3">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; 2023 CS Bangladesh. All rights reserved.</p>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Bootstrap JS Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        $(document).ready(function () {
+            // Check if device is mobile or desktop
+            const isMobile = window.innerWidth <= 992;
+
+            if (!isMobile) {
+                // For desktop: Show dropdown on hover
+                $('.navbar .dropdown').hover(
+                    function () {
+                        $(this).find('.dropdown-menu').first().stop(true, true).delay(50).slideDown();
+                    },
+                    function () {
+                        $(this).find('.dropdown-menu').first().stop(true, true).delay(50).slideUp();
+                    }
+                );
+
+                // For third level menu on desktop
+                $('.dropdown-menu .dropdown-item').hover(
+                    function () {
+                        $(this).next('.dropdown-submenu').stop(true, true).delay(50).show();
+                    },
+                    function () {
+                        $(this).next('.dropdown-submenu').stop(true, true).delay(50).hide();
+                    }
+                );
+            } else {
+                // For mobile: Handle clicks for submenu toggling
+                $('.dropdown-item').each(function () {
+                    if ($(this).next('.dropdown-submenu').length > 0) {
+                        $(this).on('click', function (e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+
+                            const $subMenu = $(this).next('.dropdown-submenu');
+                            $subMenu.toggleClass('show');
+
+                            return false;
+                        });
+                    }
+                });
+
+                // Close other submenus when a new one is opened
+                $('.dropdown').on('show.bs.dropdown', function () {
+                    $('.dropdown-submenu.show').removeClass('show');
+                });
+            }
+
+            // Handle window resize
+            $(window).resize(function () {
+                const isNowMobile = window.innerWidth <= 992;
+
+                // If switched from mobile to desktop or vice versa, reload to reset menu behavior
+                if (isNowMobile !== isMobile) {
+                    location.reload();
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
