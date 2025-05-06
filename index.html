@@ -9,18 +9,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Custom CSS -->
     <style>
         /* Custom colors and styles */
-        :root {
-            --primary-color: #d14836;
-            --secondary-color: #343a40;
-            --light-color: #f8f9fa;
-        }
-
-        /* Color Palette Options */
-        /* 
-        /* Palette 1: Professional Blue */
         :root {
             --primary-color: #1a73e8;
             --secondary-color: #34495e;
@@ -29,52 +25,10 @@
             --dark-color: #2c3e50;
         }
 
-        /* Palette 2: Tech Green (Uncomment to use) */
-        /*
-        :root {
-            --primary-color: #27ae60;
-            --secondary-color: #2c3e50;
-            --accent-color: #e74c3c;
-            --light-color: #ecf0f1;
-            --dark-color: #1a252f;
-        }
-        */
-
-        /* Palette 3: Modern Purple (Uncomment to use) */
-        /*
-        :root {
-            --primary-color: #8e44ad;
-            --secondary-color: #34495e;
-            --accent-color: #f39c12;
-            --light-color: #f5f5f5;
-            --dark-color: #2c3e50;
-        }
-        */
-
-        /* Palette 4: Vibrant Red (Uncomment to use) */
-        /*
-        :root {
-            --primary-color: #e74c3c;
-            --secondary-color: #2c3e50;
-            --accent-color: #3498db;
-            --light-color: #ecf0f1;
-            --dark-color: #34495e;
-        }
-        */
-
-        /* Palette 5: Classic Teal (Uncomment to use) */
-        /*
-        :root {
-            --primary-color: #16a085;
-            --secondary-color: #2c3e50;
-            --accent-color: #e74c3c;
-            --light-color: #f5f5f5;
-            --dark-color: #34495e;
-        }
-        */
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
         }
 
         /* Logo styling */
@@ -173,24 +127,83 @@
             .dropdown-submenu .dropdown-item {
                 padding-left: 2rem;
             }
+
+            /* Fix for submenu hover issues */
+            .dropdown-item[data-bs-toggle="dropdown-submenu"] {
+                cursor: pointer;
+            }
+
+            /* Highlight active submenu toggles */
+            .dropdown-item[aria-expanded="true"] {
+                background-color: var(--light-color);
+                color: var(--primary-color);
+            }
+
+            /* Custom mobile menu styles */
+            .has-submenu {
+                position: relative;
+            }
+
+            .submenu-toggle {
+                position: absolute;
+                right: 0;
+                top: 0;
+                height: 100%;
+                width: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 2;
+            }
+
+            /* Prevent dropdown from closing when clicking inside */
+            .dropdown-menu.prevent-close {
+                display: block;
+            }
         }
 
         /* Main navigation */
         .navbar {
             background-color: white;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
             padding: 0.5rem 1rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav>.dropdown:hover>.dropdown-menu {
+            display: block;
+        }
+
+        /* Add padding to body to prevent content from hiding behind fixed navbar */
+        body {
+            padding-top: 76px;
+            /* Adjust based on your navbar height */
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+        }
+
+        /* Navbar scroll effect */
+        .navbar.scrolled {
+            padding: 0.3rem 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .nav-link {
             color: var(--secondary-color);
             font-weight: 500;
             padding: 0.5rem 1rem !important;
+            transition: all 0.3s ease;
         }
 
         .nav-link:hover,
         .nav-link:focus {
             color: var(--primary-color);
+            transform: translateY(-2px);
         }
 
         .navbar-toggler {
@@ -199,14 +212,79 @@
 
         /* Hero section */
         .hero {
-            background-color: var(--light-color);
-            padding: 3rem 0;
-            margin-bottom: 2rem;
+            position: relative;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #4286f4 100%);
+            color: white;
+            margin-top: -15px;
+            padding: 5rem 0;
+            margin-bottom: 3rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.5;
         }
 
         .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: white;
+        }
+
+        .hero .lead {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero .btn {
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero .btn-primary {
+            background-color: white;
             color: var(--primary-color);
-            font-weight: bold;
+            border: none;
+        }
+
+        .hero img {
+            animation: floating 3s ease-in-out infinite;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
         }
 
         /* Section styling */
@@ -215,6 +293,7 @@
             margin-bottom: 1.5rem;
             position: relative;
             padding-bottom: 0.5rem;
+            font-weight: 700;
         }
 
         .section-title::after {
@@ -222,52 +301,302 @@
             position: absolute;
             left: 0;
             bottom: 0;
-            height: 3px;
+            height: 4px;
             width: 50px;
             background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: var(--accent-color);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        section {
+            padding: 5rem 0;
         }
 
         .card {
             border: none;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
             margin-bottom: 1.5rem;
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
 
         .card-title {
             color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        /* History section */
+        .history-section {
+            position: relative;
+            background-color: #f0f7ff;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .history-section::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: rgba(26, 115, 232, 0.1);
+            z-index: 0;
+        }
+
+        .history-content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        .history-content p {
+            line-height: 1.8;
+        }
+
+        .history-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Objectives section */
+        .objectives-list {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .list-group-item {
+            padding: 1rem 1.5rem;
+            border-left: 4px solid var(--primary-color);
+            margin-bottom: 0.5rem;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .list-group-item:hover {
+            transform: translateX(5px);
+            background-color: var(--light-color);
+        }
+
+        /* Activities section */
+        .activities-section {
+            background-color: #f5f9ff;
+            border-radius: 10px;
+            padding: 3rem 0;
+        }
+
+        .activity-card {
+            height: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .activity-card .card-body {
+            padding: 1.5rem;
+        }
+
+        .activity-card .text-muted {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: var(--light-color);
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .view-more-btn {
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .view-more-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
         /* Footer */
         footer {
             background-color: var(--secondary-color);
             color: white;
-            padding: 2rem 0;
-            margin-top: 3rem;
+            padding: 4rem 0 2rem;
+            margin-top: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
 
         footer a {
             color: white;
             text-decoration: none;
+            transition: all 0.3s ease;
         }
 
         footer a:hover {
-            color: var(--primary-color);
+            color: var(--accent-color);
+            transform: translateX(5px);
         }
 
         .footer-title {
             font-weight: bold;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 30px;
+            background-color: var(--accent-color);
         }
 
         .social-icons a {
-            display: inline-block;
-            margin-right: 1rem;
-            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin-right: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        footer .list-unstyled li {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+        }
+
+        footer .list-unstyled li i {
+            margin-right: 0.75rem;
+            color: var(--accent-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        /* Animation classes */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .slide-up {
+            animation: slideUp 0.8s ease-in-out;
+        }
+
+        .slide-right {
+            animation: slideRight 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideRight {
+            from {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero img {
+                margin-top: 2rem;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
         }
     </style>
 </head>
@@ -279,7 +608,8 @@
             <div class="container">
                 <!-- Logo -->
                 <a class="navbar-brand logo" href="index.html">
-                    <span class="logo-text">CS Bangladesh</span>
+                    <img src="assets/images/logo.jpeg" />
+                    <span class="logo-text">CS BANGLADESH</span>
                 </a>
 
                 <!-- Mobile Toggle Button -->
@@ -300,19 +630,30 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                About Us
+                                WHO WE ARE
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
-                                <li><a class="dropdown-item" href="#">History</a></li>
-                                <li><a class="dropdown-item" href="#">Objective</a></li>
-                                <li><a class="dropdown-item" href="#">Advisors</a></li>
                                 <li>
-                                    <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">
-                                        Executive Committee
+                                    <a class="dropdown-item d-flex justify-content-between align-items-center submenu-parent"
+                                        href="#" data-has-submenu="true">
+                                        About Us
                                         <i class="fas fa-chevron-right ms-2 small"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-submenu">
-                                        <li><a class="dropdown-item" href="#">President</a></li>
+                                        <li><a class="dropdown-item" href="#">Background of CSBD</a></li>
+                                        <li><a class="dropdown-item" href="#">Aim & Objectives</a></li>
+                                        <li><a class="dropdown-item" href="#">Legal Entity</a></li>
+                                        <li><a class="dropdown-item" href="#">Some Recent Activities</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item d-flex justify-content-between align-items-center submenu-parent"
+                                        href="#" data-has-submenu="true">
+                                        WHAT WE DO
+                                        <i class="fas fa-chevron-right ms-2 small"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-submenu">
+                                        <li><a class="dropdown-item" href="#">Capacity Building</a></li>
                                         <li><a class="dropdown-item" href="#">Secretary General</a></li>
                                         <li><a class="dropdown-item" href="#">Treasurer</a></li>
                                         <li><a class="dropdown-item" href="#">Members</a></li>
@@ -330,7 +671,8 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="trainingDropdown">
                                 <li>
-                                    <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">
+                                    <a class="dropdown-item d-flex justify-content-between align-items-center submenu-parent"
+                                        href="#" data-has-submenu="true">
                                         Past Events
                                         <i class="fas fa-chevron-right ms-2 small"></i>
                                     </a>
@@ -340,7 +682,8 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">
+                                    <a class="dropdown-item d-flex justify-content-between align-items-center submenu-parent"
+                                        href="#" data-has-submenu="true">
                                         Upcoming Events
                                         <i class="fas fa-chevron-right ms-2 small"></i>
                                     </a>
@@ -380,7 +723,8 @@
                                 <li><a class="dropdown-item" href="#">News/Updates</a></li>
                                 <li><a class="dropdown-item" href="#">FAQ</a></li>
                                 <li>
-                                    <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">
+                                    <a class="dropdown-item d-flex justify-content-between align-items-center submenu-parent"
+                                        href="#" data-has-submenu="true">
                                         Links
                                         <i class="fas fa-chevron-right ms-2 small"></i>
                                     </a>
@@ -401,7 +745,8 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="eventsDropdown">
                                 <li>
-                                    <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">
+                                    <a class="dropdown-item d-flex justify-content-between align-items-center submenu-parent"
+                                        href="#" data-has-submenu="true">
                                         Upcoming Events
                                         <i class="fas fa-chevron-right ms-2 small"></i>
                                     </a>
@@ -414,7 +759,8 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">
+                                    <a class="dropdown-item d-flex justify-content-between align-items-center submenu-parent"
+                                        href="#" data-has-submenu="true">
                                         Past Events
                                         <i class="fas fa-chevron-right ms-2 small"></i>
                                     </a>
@@ -452,13 +798,13 @@
     <section class="hero">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6">
+                <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
                     <h1>Welcome to CS Bangladesh</h1>
                     <p class="lead">Promoting computer science education and research in Bangladesh</p>
                     <a href="#" class="btn btn-primary mt-3">Learn More</a>
                 </div>
-                <div class="col-lg-6">
-                    <img src="/placeholder.svg?height=300&width=500" alt="CS Bangladesh" class="img-fluid">
+                <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <img src="/placeholder.svg?height=400&width=500" alt="CS Bangladesh" class="img-fluid">
                 </div>
             </div>
         </div>
@@ -468,89 +814,138 @@
     <main class="container">
         <!-- Short History Section -->
         <section class="mb-5">
-            <h2 class="section-title">Short History</h2>
-            <div class="row">
-                <div class="col-lg-8">
-                    <p>CS Bangladesh was established in 2010 with the vision of advancing computer science education and
-                        research in Bangladesh. Founded by a group of passionate computer scientists and educators, the
-                        organization has grown to become a leading voice in the technology sector of the country.</p>
-                    <p>Over the years, we have organized numerous workshops, seminars, and training programs to promote
-                        computer science education and research. Our members include academics, industry professionals,
-                        and students who are committed to the advancement of computer science in Bangladesh.</p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 mb-4">
+                        <p class="section-subtitle" data-aos="fade-up">Our Background</p>
+                        <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Short History</h2>
+                    </div>
                 </div>
-                <div class="col-lg-4">
-                    <img src="/placeholder.svg?height=200&width=300" alt="CS Bangladesh History"
-                        class="img-fluid rounded">
+                <div class="history-section" data-aos="fade-up" data-aos-delay="200">
+                    <div class="row g-0">
+                        <div class="col-lg-8">
+                            <div class="history-content">
+                                <p>CS Bangladesh was established in 2010 with the vision of advancing computer science
+                                    education and research in Bangladesh. Founded by a group of passionate computer
+                                    scientists and educators, the organization has grown to become a leading voice in
+                                    the technology sector of the country.</p>
+                                <p>Over the years, we have organized numerous workshops, seminars, and training programs
+                                    to promote computer science education and research. Our members include academics,
+                                    industry professionals, and students who are committed to the advancement of
+                                    computer science in Bangladesh.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="history-image h-100">
+                                <img src="/placeholder.svg?height=300&width=300" alt="CS Bangladesh History"
+                                    class="img-fluid h-100 w-100" style="object-fit: cover;">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Aims and Objectives Section -->
         <section class="mb-5">
-            <h2 class="section-title">Aims & Objectives</h2>
-            <div class="row">
-                <div class="col-lg-4">
-                    <img src="/placeholder.svg?height=200&width=300" alt="CS Bangladesh Objectives"
-                        class="img-fluid rounded">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 mb-4">
+                        <p class="section-subtitle" data-aos="fade-up">Our Mission</p>
+                        <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Aims & Objectives</h2>
+                    </div>
                 </div>
-                <div class="col-lg-8">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">To promote computer science education and research in Bangladesh
-                        </li>
-                        <li class="list-group-item">To organize workshops, seminars, and training programs for students
-                            and professionals</li>
-                        <li class="list-group-item">To establish collaboration between academia and industry</li>
-                        <li class="list-group-item">To provide a platform for networking and knowledge sharing among
-                            computer science professionals</li>
-                        <li class="list-group-item">To advocate for policies that promote technology education and
-                            innovation</li>
-                        <li class="list-group-item">To support students and young professionals in their career
-                            development</li>
-                    </ul>
+                <div class="row align-items-center">
+                    <div class="col-lg-4 mb-4 mb-lg-0" data-aos="fade-right" data-aos-delay="200">
+                        <div class="history-image">
+                            <img src="/placeholder.svg?height=350&width=350" alt="CS Bangladesh Objectives"
+                                class="img-fluid rounded">
+                        </div>
+                    </div>
+                    <div class="col-lg-8" data-aos="fade-left" data-aos-delay="300">
+                        <div class="objectives-list">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class="fas fa-check-circle text-primary me-2"></i> To
+                                    promote computer science education and research in Bangladesh</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-primary me-2"></i> To
+                                    organize workshops, seminars, and training programs for students and professionals
+                                </li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-primary me-2"></i> To
+                                    establish collaboration between academia and industry</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-primary me-2"></i> To
+                                    provide a platform for networking and knowledge sharing among computer science
+                                    professionals</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-primary me-2"></i> To
+                                    advocate for policies that promote technology education and innovation</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-primary me-2"></i> To
+                                    support students and young professionals in their career development</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Recent Activities Section -->
-        <section class="mb-5">
-            <h2 class="section-title">Recent Activities Summary</h2>
-            <div class="row">
-                <div class="col-lg-4 mb-4">
-                    <div class="card h-100">
-                        <img src="/placeholder.svg?height=200&width=300" class="card-img-top" alt="Workshop">
-                        <div class="card-body">
-                            <h5 class="card-title">AI Workshop</h5>
-                            <p class="card-text">A three-day workshop on Artificial Intelligence and Machine Learning
-                                was organized at Dhaka University.</p>
-                            <p class="text-muted small">May 15, 2023</p>
+        <section class="activities-section mb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 mb-4 text-center">
+                        <p class="section-subtitle" data-aos="fade-up">What We've Been Doing</p>
+                        <h2 class="section-title text-center" data-aos="fade-up" data-aos-delay="100">Recent Activities
+                            Summary</h2>
+                        <div class="d-flex justify-content-center">
+                            <div class="section-title-underline"></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 mb-4">
-                    <div class="card h-100">
-                        <img src="/placeholder.svg?height=200&width=300" class="card-img-top" alt="Conference">
-                        <div class="card-body">
-                            <h5 class="card-title">Annual Conference</h5>
-                            <p class="card-text">The annual conference on Computer Science and Engineering was held with
-                                participants from all over the country.</p>
-                            <p class="text-muted small">April 10, 2023</p>
+                <div class="row">
+                    <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card activity-card h-100">
+                            <div class="position-relative overflow-hidden">
+                                <img src="/placeholder.svg?height=200&width=300" class="card-img-top" alt="Workshop">
+                                <div class="activity-overlay"></div>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">AI Workshop</h5>
+                                <p class="card-text">A three-day workshop on Artificial Intelligence and Machine
+                                    Learning was organized at Dhaka University.</p>
+                                <p class="text-muted small">May 15, 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="card activity-card h-100">
+                            <div class="position-relative overflow-hidden">
+                                <img src="/placeholder.svg?height=200&width=300" class="card-img-top" alt="Conference">
+                                <div class="activity-overlay"></div>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Annual Conference</h5>
+                                <p class="card-text">The annual conference on Computer Science and Engineering was held
+                                    with participants from all over the country.</p>
+                                <p class="text-muted small">April 10, 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="400">
+                        <div class="card activity-card h-100">
+                            <div class="position-relative overflow-hidden">
+                                <img src="/placeholder.svg?height=200&width=300" class="card-img-top" alt="Seminar">
+                                <div class="activity-overlay"></div>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Industry Seminar</h5>
+                                <p class="card-text">A seminar on "Career Opportunities in IT Industry" was organized
+                                    for university students.</p>
+                                <p class="text-muted small">March 5, 2023</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 mb-4">
-                    <div class="card h-100">
-                        <img src="/placeholder.svg?height=200&width=300" class="card-img-top" alt="Seminar">
-                        <div class="card-body">
-                            <h5 class="card-title">Industry Seminar</h5>
-                            <p class="card-text">A seminar on "Career Opportunities in IT Industry" was organized for
-                                university students.</p>
-                            <p class="text-muted small">March 5, 2023</p>
-                        </div>
-                    </div>
+                <div class="text-center mt-4" data-aos="fade-up" data-aos-delay="500">
+                    <a href="#" class="btn view-more-btn">View All Activities</a>
                 </div>
-            </div>
-            <div class="text-center mt-3">
-                <a href="#" class="btn btn-outline-primary">View All Activities</a>
             </div>
         </section>
     </main>
@@ -572,24 +967,24 @@
                 <div class="col-lg-4 mb-4">
                     <h5 class="footer-title">Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Events</a></li>
-                        <li><a href="#">Resources</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Home</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> About Us</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Events</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Resources</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 mb-4">
                     <h5 class="footer-title">Contact Information</h5>
                     <ul class="list-unstyled">
-                        <li><i class="fas fa-map-marker-alt me-2"></i> 123 University Road, Dhaka, Bangladesh</li>
-                        <li><i class="fas fa-phone me-2"></i> +880 1234 567890</li>
-                        <li><i class="fas fa-envelope me-2"></i> info@csbangladesh.org</li>
-                        <li><i class="fas fa-globe me-2"></i> www.csbangladesh.org</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 University Road, Dhaka, Bangladesh</li>
+                        <li><i class="fas fa-phone"></i> +880 1234 567890</li>
+                        <li><i class="fas fa-envelope"></i> info@csbangladesh.org</li>
+                        <li><i class="fas fa-globe"></i> www.csbangladesh.org</li>
                     </ul>
                 </div>
             </div>
-            <div class="row mt-3">
+            <div class="row footer-bottom">
                 <div class="col-12 text-center">
                     <p class="mb-0">&copy; 2023 CS Bangladesh. All rights reserved.</p>
                 </div>
@@ -597,71 +992,101 @@
         </div>
     </footer>
 
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <!-- Custom JavaScript -->
-    <script>
-        $(document).ready(function () {
-            // Check if device is mobile or desktop
-            const isMobile = window.innerWidth <= 992;
 
-            if (!isMobile) {
-                // For desktop: Show dropdown on hover
-                $('.navbar .dropdown').hover(
-                    function () {
-                        $(this).find('.dropdown-menu').first().stop(true, true).delay(50).slideDown();
-                    },
-                    function () {
-                        $(this).find('.dropdown-menu').first().stop(true, true).delay(50).slideUp();
+</body>
+<script>
+    $(document).ready(function () {
+        // Initialize AOS animation
+        AOS.init({
+            once: true,
+            offset: 100
+        });
+
+        // Check if device is mobile or desktop
+        const isMobile = window.innerWidth <= 992;
+
+        if (!isMobile) {
+            // For desktop: Show dropdown on hover
+
+        } else {
+            // COMPLETELY NEW APPROACH FOR MOBILE
+
+            // 1. Prevent Bootstrap's default dropdown behavior from closing dropdowns when clicking inside
+            $(document).on('click', '.dropdown-menu', function (e) {
+                e.stopPropagation();
+            });
+
+            // 2. Handle submenu parent clicks
+            $(document).on('click', '.submenu-parent', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const $submenu = $(this).next('.dropdown-submenu');
+
+                // Toggle only this submenu
+                if ($submenu.hasClass('show')) {
+                    $submenu.removeClass('show');
+                } else {
+                    // Close other submenus at the same level
+                    $(this).parent().siblings().find('.dropdown-submenu').removeClass('show');
+                    $submenu.addClass('show');
+                }
+
+                return false;
+            });
+
+            // 3. Keep parent dropdown open when clicking anywhere inside it
+            $('.dropdown').on('hide.bs.dropdown', function (e) {
+                // Only if we're on mobile
+                if (window.innerWidth <= 992) {
+                    // If the click was inside this dropdown, prevent it from closing
+                    if ($(e.target).closest('.dropdown-menu').length) {
+                        e.preventDefault();
                     }
-                );
-
-                // For third level menu on desktop
-                $('.dropdown-menu .dropdown-item').hover(
-                    function () {
-                        $(this).next('.dropdown-submenu').stop(true, true).delay(50).show();
-                    },
-                    function () {
-                        $(this).next('.dropdown-submenu').stop(true, true).delay(50).hide();
-                    }
-                );
-            } else {
-                // For mobile: Handle clicks for submenu toggling
-                $('.dropdown-item').each(function () {
-                    if ($(this).next('.dropdown-submenu').length > 0) {
-                        $(this).on('click', function (e) {
-                            e.preventDefault();
-                            e.stopPropagation();
-
-                            const $subMenu = $(this).next('.dropdown-submenu');
-                            $subMenu.toggleClass('show');
-
-                            return false;
-                        });
-                    }
-                });
-
-                // Close other submenus when a new one is opened
-                $('.dropdown').on('show.bs.dropdown', function () {
-                    $('.dropdown-submenu.show').removeClass('show');
-                });
-            }
-
-            // Handle window resize
-            $(window).resize(function () {
-                const isNowMobile = window.innerWidth <= 992;
-
-                // If switched from mobile to desktop or vice versa, reload to reset menu behavior
-                if (isNowMobile !== isMobile) {
-                    location.reload();
                 }
             });
+
+            // 4. Make sure clicking on submenu items doesn't close the menu
+            $(document).on('click', '.dropdown-submenu .dropdown-item', function (e) {
+                // If this is a link to a page, allow normal behavior
+                if ($(this).attr('href') && $(this).attr('href') !== '#') {
+                    return true;
+                }
+
+                // Otherwise prevent default and stop propagation
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            });
+        }
+
+        // Handle window resize
+        $(window).resize(function () {
+            const isNowMobile = window.innerWidth <= 992;
+
+            // If switched from mobile to desktop or vice versa, reload to reset menu behavior
+            if (isNowMobile !== isMobile) {
+                location.reload();
+            }
         });
-    </script>
-</body>
+    });
+
+    // Navbar scroll effect
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 50) {
+            $('.navbar').addClass('scrolled');
+        } else {
+            $('.navbar').removeClass('scrolled');
+        }
+    });
+</script>
 
 </html>
