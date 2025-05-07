@@ -15,7 +15,9 @@ body {
 }
 
 .main-container{
+    
     overflow-x: hidden;
+
 }
 /* Logo styling */
 .logo {
